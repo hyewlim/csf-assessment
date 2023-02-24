@@ -1,5 +1,6 @@
 package vttp2022.csf.assessment.server.services;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +19,8 @@ public class RestaurantService {
 	@Autowired
 	private RestaurantRepository restaurantRepo;
 
-//	@Autowired
-//	private MapCache mapCache;
+	@Autowired
+	private MapCache mapCache;
 
 	// TODO Task 2
 
@@ -55,10 +56,18 @@ public class RestaurantService {
 	// Use this method to find a specific restaurant
 	// You can add any parameters (if any) 
 	// DO NOT CHNAGE THE METHOD'S NAME OR THE RETURN TYPE
-	public Optional<Restaurant> getRestaurant() {
+	public Optional<Restaurant> getRestaurant(String name) throws IOException {
 		// Implmementation in here
+		Optional<Restaurant> optionalRestaurant = restaurantRepo.getRestaurant(name);
+		Restaurant restaurant = optionalRestaurant.get();
+		String url = mapCache.getMap(restaurant.getCoordinates());
 
-		return null;
+		restaurant.setMapURL(url);
+
+		System.out.println(restaurant.toString());
+
+		return Optional.ofNullable(restaurant);
+
 	}
 
 	// TODO Task 5
