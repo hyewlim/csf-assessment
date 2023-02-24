@@ -1,0 +1,3 @@
+TODO: Task 1 - Write the mongo import command here
+
+mongoimport mongodb+srv://db-mongodb-sgp1-hyhy-248373c1.mongo.ondigitalocean.com -drestaurantdb -crestaurants --jsonArray D:\assessment\restaurants.json -u=doadmin --password=98Yj7m4T6B3b2d5L --authenticationDatabase=admin
