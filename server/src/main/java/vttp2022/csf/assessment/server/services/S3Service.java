@@ -26,14 +26,9 @@ public class S3Service {
 
         InputStream inputStream = new ByteArrayInputStream(file);
 
-        Map<String, String> userData = new HashMap<>();
-//        userData.put("name", post.getName());
-//        userData.put("uploadTime", String.valueOf(new Date()));
-
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(file.length);
         metadata.setContentType("image/png");
-//        metadata.setUserMetadata(userData);
 
         String key = UUID.randomUUID().toString().substring(0,8);
 

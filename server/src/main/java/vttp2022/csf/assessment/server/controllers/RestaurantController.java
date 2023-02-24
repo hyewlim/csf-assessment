@@ -1,6 +1,5 @@
 package vttp2022.csf.assessment.server.controllers;
 
-import com.amazonaws.Response;
 import jakarta.json.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -72,6 +71,7 @@ public class RestaurantController {
                .add("cuisine", restaurant.getCuisine())
                .add("address", restaurant.getAddress())
                .add("coordinates", result)
+               .add("imgUrl", restaurant.getMapURL())
                .build();
 
 
@@ -96,7 +96,11 @@ public class RestaurantController {
 
         restaurantService.addComment(comment);
 
-        return null;
+        JsonObject response = Json.createObjectBuilder()
+                .add("message", "Comment posted")
+                .build();
+
+        return ResponseEntity.ok(response.toString());
 
     }
 }

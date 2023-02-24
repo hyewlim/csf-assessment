@@ -10,9 +10,6 @@ import {Router} from "@angular/router";
 })
 export class RestaurantCuisineComponent implements OnInit, OnDestroy{
 
-	// TODO Task 3
-	// For View 2
-
   restaurants!: string[]
 
   chosenCuisine!: string

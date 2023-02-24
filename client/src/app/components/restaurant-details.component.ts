@@ -19,8 +19,6 @@ export class RestaurantDetailsComponent implements OnInit, OnDestroy{
   restaurant!: Restaurant;
 
   restaurantSub$!: Subscription;
-	// TODO Task 4 and Task 5
-	// For View 3
 
   constructor(private restService: RestaurantService,
               private fb: FormBuilder,
@@ -54,6 +52,7 @@ export class RestaurantDetailsComponent implements OnInit, OnDestroy{
     this.commentToSubmit = this.form.value
     this.commentToSubmit.restaurantId = this.restaurant.restaurantId
     this.restService.postComment(this.commentToSubmit);
+    this.route.navigate([''])
 
   }
 

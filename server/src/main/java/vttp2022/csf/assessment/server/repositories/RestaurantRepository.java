@@ -1,21 +1,16 @@
 package vttp2022.csf.assessment.server.repositories;
 
 import java.util.*;
-
-import com.mongodb.DBObject;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.data.mongodb.core.aggregation.StringOperators;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Repository;
 import vttp2022.csf.assessment.server.models.Comment;
 import vttp2022.csf.assessment.server.models.LatLng;
@@ -26,12 +21,6 @@ public class RestaurantRepository {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
-	// TODO Task 2
-	// Use this method to retrive a list of cuisines from the restaurant collection
-	// You can add any parameters (if any) and the return type 
-	// DO NOT CHNAGE THE METHOD'S NAME
-	// Write the Mongo native query above for this method
-	//  
 	public List<String> getCuisines() {
 		//	db.getCollection("restaurants").distinct("cuisine")
 		List<String> cuisines = mongoTemplate.findDistinct(
@@ -40,12 +29,6 @@ public class RestaurantRepository {
 		return cuisines;
 	}
 
-	// TODO Task 3
-	// Use this method to retrive a all restaurants for a particular cuisine
-	// You can add any parameters (if any) and the return type 
-	// DO NOT CHNAGE THE METHOD'S NAME
-	// Write the Mongo native query above for this method
-	//  
 	public List<String> getRestaurantsByCuisine(String cuisine) {
 		//db.getCollection("restaurants").find({cuisine: "Armenian"})
 		Query query = Query.query(Criteria.where("cuisine").regex(cuisine, "i"));
@@ -61,12 +44,6 @@ public class RestaurantRepository {
 
 	}
 
-	// TODO Task 4
-	// Use this method to find a specific restaurant
-	// You can add any parameters (if any) 
-	// DO NOT CHNAGE THE METHOD'S NAME OR THE RETURN TYPE
-	// Write the Mongo native query above for this method
-	//  
 	public Optional<Restaurant> getRestaurant(String name) {
 
 //		db.restaurants.aggregate([
@@ -126,26 +103,10 @@ public class RestaurantRepository {
 
 	}
 
-	// TODO Task 5
-	// Use this method to insert a comment into the restaurant database
-	// DO NOT CHNAGE THE METHOD'S NAME OR THE RETURN TYPE
-	// Write the Mongo native query above for this method
-	//  
 	public void addComment(Comment comment) {
 
-		Optional<Comment> newComment = Optional.of(mongoTemplate.insert(comment, "comments"));
-
-		if (newComment.isPresent()) {
-			System.out.println("COLLECTIONED POSTED!!!!!!!!!");
-		}
-
-		else
-		{
-			System.out.println("MONGO POST FAILED!!!!!!");
-		}
+		mongoTemplate.insert(comment, "comments");
 
 	}
-	
-	// You may add other methods to this class
 
 }

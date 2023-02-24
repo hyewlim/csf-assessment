@@ -20,10 +20,6 @@ public class MapCache {
 
 	final String MAP_SERVER_URL = "http://map.chuklee.com/map";
 
-	// TODO Task 4
-	// Use this method to retrieve the map
-	// You can add any parameters (if any) and the return type 
-	// DO NOT CHNAGE THE METHOD'S NAME
 	public String getMap(LatLng latlng) throws IOException {
 
 		String url = UriComponentsBuilder.fromUriString(MAP_SERVER_URL)

@@ -22,8 +22,6 @@ public class RestaurantService {
 	@Autowired
 	private MapCache mapCache;
 
-	// TODO Task 2
-
 	public List<String> getCuisines() {
 
 		List<String> cuisines = restaurantRepo.getCuisines();
@@ -40,10 +38,6 @@ public class RestaurantService {
 		
 	}
 
-	// TODO Task 3 
-	// Use the following method to get a list of restaurants by cuisine
-	// You can add any parameters (if any) and the return type 
-	// DO NOT CHNAGE THE METHOD'S NAME
 	public List<String> getRestaurantsByCuisine(String cuisine) {
 		// Implmementation in here
 		String cuisineReplaced = cuisine.replace("_", "/");
@@ -52,10 +46,6 @@ public class RestaurantService {
 		
 	}
 
-	// TODO Task 4
-	// Use this method to find a specific restaurant
-	// You can add any parameters (if any) 
-	// DO NOT CHNAGE THE METHOD'S NAME OR THE RETURN TYPE
 	public Optional<Restaurant> getRestaurant(String name) throws IOException {
 		// Implmementation in here
 		Optional<Restaurant> optionalRestaurant = restaurantRepo.getRestaurant(name);
@@ -70,14 +60,10 @@ public class RestaurantService {
 
 	}
 
-	// TODO Task 5
-	// Use this method to insert a comment into the restaurant database
-	// DO NOT CHNAGE THE METHOD'S NAME OR THE RETURN TYPE
 	public void addComment(Comment comment) {
 
 		restaurantRepo.addComment(comment);
 
 	}
-	//
-	// You may add other methods to this class
+
 }

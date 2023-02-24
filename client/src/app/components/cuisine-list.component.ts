@@ -10,9 +10,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CuisineListComponent implements OnInit, OnDestroy{
 
-	// TODO Task 2
-	// For View 1
-
   cuisines!: string[]
 
   cuisineSub$!: Subscription
@@ -33,13 +30,11 @@ export class CuisineListComponent implements OnInit, OnDestroy{
       }
     )
 
-
   }
 
   ngOnDestroy(): void {
     this.cuisineSub$.unsubscribe();
   }
-
 
   pickCuisine(i: number) {
       this.chosenCuisine = this.cuisines[i]
