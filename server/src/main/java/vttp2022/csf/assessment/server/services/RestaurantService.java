@@ -22,7 +22,7 @@ public class RestaurantService {
 //	private MapCache mapCache;
 
 	// TODO Task 2
-//	db.getCollection("restaurants").distinct("cuisine")
+
 	public List<String> getCuisines() {
 
 		List<String> cuisines = restaurantRepo.getCuisines();
@@ -34,7 +34,6 @@ public class RestaurantService {
 			underScoreCuisines.add(cuisineReplaced);
 		}
 
-		System.out.println(underScoreCuisines.toString());
 
 		return underScoreCuisines;
 		
@@ -44,8 +43,11 @@ public class RestaurantService {
 	// Use the following method to get a list of restaurants by cuisine
 	// You can add any parameters (if any) and the return type 
 	// DO NOT CHNAGE THE METHOD'S NAME
-	public void getRestaurantsByCuisine() {
+	public List<String> getRestaurantsByCuisine(String cuisine) {
 		// Implmementation in here
+		String cuisineReplaced = cuisine.replace("_", "/");
+
+		return restaurantRepo.getRestaurantsByCuisine(cuisineReplaced);
 		
 	}
 

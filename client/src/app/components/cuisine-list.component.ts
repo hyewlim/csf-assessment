@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {RestaurantService} from "../restaurant-service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-cuisine-list',
@@ -12,41 +13,38 @@ export class CuisineListComponent implements OnInit, OnDestroy{
 	// TODO Task 2
 	// For View 1
 
-  cruisines!: string[]
+  cuisines!: string[]
 
-  cruisineSub$!: Subscription
+  cuisineSub$!: Subscription
 
-  constructor(private restService: RestaurantService) {
+  chosenCuisine!: string
+
+  constructor(private restService: RestaurantService,
+              private route: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
 
     this.restService.getCuisineList()
-    this.cruisineSub$ = this.restService.crusines.subscribe(
+    this.cuisineSub$ = this.restService.cuisines.subscribe(
       (result) => {
-        this.cruisines = result
+        this.cuisines = result
       }
     )
-    //
-    // this.restService.getCuisineList().then(
-    //   (result) => {
-    //
-    //     this.cruisines = result;
-    //   }
-    // )
 
-    //  this.restService.crusines.subscribe(
-    //   result => {
-    //     this.cruisines = result;
-    //   }
-    // )
+
   }
 
   ngOnDestroy(): void {
+    this.cuisineSub$.unsubscribe();
   }
 
 
-
-
-
+  pickCuisine(i: number) {
+      this.chosenCuisine = this.cuisines[i]
+      console.log(this.chosenCuisine)
+      this.restService.getRestaurantsByCuisine(this.chosenCuisine)
+      this.route.navigate(['cuisine'])
+  }
 }

@@ -1,1 +1,15 @@
-<p>restaurant-cuisine works!</p>
+<div *ngIf="restaurants">
+
+  <div>
+    <h3>List of {{chosenCuisine}} Restaurants</h3>
+  </div>
+
+  <div *ngFor="let rest of restaurants; let i = index"
+       class="clickable"
+       [routerLink]="['/restuarants', rest]"
+       (click)="pickRestaurant(i)">
+    {{rest}}
+  </div>
+
+
+</div>

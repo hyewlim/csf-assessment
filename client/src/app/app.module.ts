@@ -8,6 +8,15 @@ import { RestaurantDetailsComponent } from './components/restaurant-details.comp
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RestaurantService} from "./restaurant-service";
+import {Router, RouterModule, Routes} from "@angular/router";
+
+const appRoutes: Routes = [
+  { path: '', component: CuisineListComponent },
+  { path: 'cuisine', component: RestaurantCuisineComponent},
+  { path: 'restaurant', component: RestaurantDetailsComponent},
+  { path: '**', redirectTo: ""},
+
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +28,8 @@ import {RestaurantService} from "./restaurant-service";
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [RestaurantService],
   bootstrap: [AppComponent]

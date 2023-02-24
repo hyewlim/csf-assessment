@@ -1,10 +1,13 @@
-<div *ngIf="cruisines">
+<div *ngIf="cuisines">
 
   <div>
     <h3>List of Cuisines</h3>
   </div>
 
-  <div *ngFor="let cuisine of cruisines">
+  <div *ngFor="let cuisine of cuisines; let i = index"
+       class="clickable"
+       [routerLink]="['/cuisine', cuisine]"
+       (click)="pickCuisine(i)">
     {{cuisine}}
   </div>
 

@@ -6,7 +6,11 @@ import {Injectable, Output} from "@angular/core";
 @Injectable()
 export class RestaurantService {
 
-  crusines = new Subject<string[]>()
+  cuisines = new Subject<string[]>()
+
+  restaurants = new Subject<string[]>()
+
+  chosenCuisineSvc = new Subject<string>()
 
   constructor(private http: HttpClient) {
   }
@@ -19,8 +23,7 @@ export class RestaurantService {
 
     return lastValueFrom(this.http.get<string[]>("/api/cuisines"))
       .then(result => {
-        console.log(result)
-        this.crusines.next(result)
+        this.cuisines.next(result)
       })
       .catch(error => {
         console.error(error)
@@ -34,8 +37,20 @@ export class RestaurantService {
 	// Use the following method to get a list of restaurants by cuisine
 	// You can add any parameters (if any) and the return type
 	// DO NOT CHNAGE THE METHOD'S NAME
-	public getRestaurantsByCuisine() {
+	public getRestaurantsByCuisine(cuisine: string) {
 		// Implememntation in here
+
+    lastValueFrom(this.http.get<string[]>("/api/" + cuisine + "/restaurants"))
+      .then(result => {
+        console.log(result)
+        this.restaurants.next(result)
+        this.chosenCuisineSvc.next(cuisine)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+
+
 
 	}
 
