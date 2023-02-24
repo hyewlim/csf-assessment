@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RestaurantService} from "../restaurant-service";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-restaurant-cuisine',
@@ -20,7 +21,10 @@ export class RestaurantCuisineComponent implements OnInit, OnDestroy{
 
   chosenCuisineSub$!: Subscription
 
-  constructor(private restService: RestaurantService) {
+  chosenRestaurant!: string;
+
+  constructor(private restService: RestaurantService,
+              private route: Router) {
   }
 
   ngOnInit(): void {
@@ -46,6 +50,12 @@ export class RestaurantCuisineComponent implements OnInit, OnDestroy{
 
 
   pickRestaurant(i: number) {
-
+    this.chosenRestaurant = this.restaurants[i]
+    console.log("chosen rest", this.chosenRestaurant)
+    this.restService.getRestaurant(this.chosenRestaurant)
+      .then(result => {
+        this.restService.chosenRestaurantSvc.next(result);
+      })
+    this.route.navigate(['restaurant'])
   }
 }

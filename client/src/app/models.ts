@@ -2,7 +2,7 @@
 export interface Restaurant {
 	restaurantId: string
 	name: string
-	cusisine: string
+	cuisine: string
 	address: string
 	coordinates: number[]
 }

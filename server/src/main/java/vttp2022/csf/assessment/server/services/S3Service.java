@@ -32,8 +32,8 @@ public class S3Service {
 
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(file.length);
-        metadata.setContentType("png");
-        metadata.setUserMetadata(userData);
+        metadata.setContentType("image/png");
+//        metadata.setUserMetadata(userData);
 
         String key = UUID.randomUUID().toString().substring(0,8);
 
@@ -48,7 +48,7 @@ public class S3Service {
 
         s3Client.putObject(putObjectRequest);
 
-        String BASE_URL = "https://hyhy.sgp1.digitaloceanspaces.com/csfassessment%252F";
+        String BASE_URL = "https://hyhy.sgp1.digitaloceanspaces.com/csfassessment%2F";
 
         String image_url = BASE_URL + key;
 

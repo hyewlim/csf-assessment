@@ -1,5 +1,5 @@
 import { Restaurant, Comment } from './models'
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {lastValueFrom, Subject} from "rxjs";
 import {Injectable, Output} from "@angular/core";
 
@@ -11,6 +11,8 @@ export class RestaurantService {
   restaurants = new Subject<string[]>()
 
   chosenCuisineSvc = new Subject<string>()
+
+  chosenRestaurantSvc = new Subject<Restaurant>()
 
   constructor(private http: HttpClient) {
   }
@@ -58,17 +60,30 @@ export class RestaurantService {
 	// Use this method to find a specific restaurant
 	// You can add any parameters (if any)
 	// DO NOT CHNAGE THE METHOD'S NAME OR THE RETURN TYPE
-	// public getRestaurant(??): Promise<Restaurant> {
-	// 	// Implememntation in here
-  //
-  //
+	public getRestaurant(name: string): Promise<Restaurant> {
+
+    let queryParams = new HttpParams()
+      .set('name', name)
+
+    return lastValueFrom(this.http
+      .get<Restaurant>("/api/restaurant", {params: queryParams}))
+
+
+
+
+  }
+
 	// }
 
 	// TODO Task 5
 	// Use this method to submit a comment
 	// DO NOT CHANGE THE METHOD'S NAME OR SIGNATURE
-	// public postComment(comment: Comment): Promise<any> {
-	// 	// Implememntation in here
-  //
-	// }
+	public postComment(comment: Comment): Promise<any> {
+
+    return lastValueFrom(this.http.post("/api/comments", comment))
+
+
+
+
+	 }
 }

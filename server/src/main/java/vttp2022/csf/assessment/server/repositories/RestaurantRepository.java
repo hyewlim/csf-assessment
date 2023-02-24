@@ -132,8 +132,18 @@ public class RestaurantRepository {
 	// Write the Mongo native query above for this method
 	//  
 	public void addComment(Comment comment) {
-		// Implmementation in here
-		
+
+		Optional<Comment> newComment = Optional.of(mongoTemplate.insert(comment, "comments"));
+
+		if (newComment.isPresent()) {
+			System.out.println("COLLECTIONED POSTED!!!!!!!!!");
+		}
+
+		else
+		{
+			System.out.println("MONGO POST FAILED!!!!!!");
+		}
+
 	}
 	
 	// You may add other methods to this class

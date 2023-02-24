@@ -1,1 +1,46 @@
-<p>restaurant-details works!</p>
+
+
+<div *ngIf="restaurant">
+
+  <div>
+    <p>Name: {{restaurant.name}}</p>
+  </div>
+
+  <div>
+    <p>Cuisine: {{restaurant.cuisine}}</p>
+  </div>
+
+  <div>
+    <p>Address: {{restaurant.address}}</p>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+    <div>Comment</div>
+
+    <div>
+      <label for="name">Name</label>
+      <input type="text" formControlName="name" id="name">
+    </div>
+
+    <div>
+      <label for="rating">Rating</label>
+      <input type="number" formControlName="rating" id="rating">
+    </div>
+
+    <div>
+      <textarea formControlName="comment" id="comment" cols="30" rows="10"></textarea>
+    </div>
+
+    <div>
+      <button type="button" (click)="return()">Back</button>
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </div>
+
+
+  </form>
+
+
+</div>
+
+

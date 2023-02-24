@@ -74,8 +74,9 @@ public class RestaurantService {
 	// Use this method to insert a comment into the restaurant database
 	// DO NOT CHNAGE THE METHOD'S NAME OR THE RETURN TYPE
 	public void addComment(Comment comment) {
-		// Implmementation in here
-		
+
+		restaurantRepo.addComment(comment);
+
 	}
 	//
 	// You may add other methods to this class

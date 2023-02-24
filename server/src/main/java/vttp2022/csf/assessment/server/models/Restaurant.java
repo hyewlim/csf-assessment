@@ -52,15 +52,4 @@ public class Restaurant {
 		return this.mapUrl;
 	}
 
-	@Override
-	public String toString() {
-		return "Restaurant{" +
-				"restaurantId='" + restaurantId + '\'' +
-				", name='" + name + '\'' +
-				", cuisine='" + cuisine + '\'' +
-				", address='" + address + '\'' +
-				", coordinates=" + coordinates +
-				", mapUrl='" + mapUrl + '\'' +
-				'}';
-	}
 }

@@ -34,4 +34,5 @@ public class Comment {
 	public String getText() {
 		return this.text;
 	}
+
 }
